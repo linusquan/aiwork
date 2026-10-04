@@ -18,13 +18,13 @@ Run every command in the directory that contains this `SKILL.md`. Do not run the
 
 ## Install
 
-Google Chrome must already be installed. These scripts launch that Chrome. Do not download a browser.
-
-If `node_modules/playwright` is missing in this skill directory, install it once:
+The fetch uses Playwright's headless shell, not the Chrome app, so it does not show a Dock icon. If `node_modules/playwright` is missing in this skill directory, install it once with `npm install`. If the shell is missing, install it once:
 
 ```bash
-npm install
+npx playwright install chromium-headless-shell
 ```
+
+Sign-in still opens the installed Google Chrome. Chrome must already be installed for that step.
 
 ## Profile
 
@@ -54,7 +54,7 @@ node scripts/profile.js reset
 
 This forgets the saved path. It does not delete the Chrome profile directory. Then do first setup again.
 
-The fetch runs headless, so no Chrome window appears. Sign-in stays visible. Chrome launches with the sandbox on, so the `--no-sandbox` warning stays off. Only one process can hold the profile. If a command says the profile is already in use, ask the user to close that Chrome window and retry. If a command says the profile path is not set, do first setup. Do not launch Chrome until a path is saved or `PLAYWRIGHT_USER_DATA_DIR` is set.
+The fetch runs in the headless shell, so no Chrome window and no Dock icon. Sign-in stays a visible Chrome window. Chrome launches with the sandbox on, so the `--no-sandbox` warning stays off. Only one process can hold the profile. If a command says the profile is already in use, ask the user to close that Chrome window and retry. If a command says the profile path is not set, do first setup. Do not launch Chrome until a path is saved or `PLAYWRIGHT_USER_DATA_DIR` is set.
 
 ## First-time sign-in
 

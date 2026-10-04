@@ -77,7 +77,7 @@ async function main() {
   let context;
   try {
     context = await chromium.launchPersistentContext(userDataDir, {
-      channel: 'chrome',
+      // No channel: headless selects Playwright's chromium-headless-shell, not Chrome.app.
       headless: true,
       chromiumSandbox: true,
     });
