@@ -1,0 +1,10 @@
+{
+  "name": "patreon-posts",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Fetch recent posts from a logged-in Patreon chat.",
+  "type": "commonjs",
+  "dependencies": {
+    "playwright": "^1.63.0"
+  }
+}
