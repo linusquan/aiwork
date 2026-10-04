@@ -78,7 +78,7 @@ async function main() {
   try {
     context = await chromium.launchPersistentContext(userDataDir, {
       channel: 'chrome',
-      headless: false,
+      headless: true,
       chromiumSandbox: true,
     });
   } catch (err) {

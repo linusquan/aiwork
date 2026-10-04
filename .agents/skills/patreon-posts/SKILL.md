@@ -54,7 +54,7 @@ node scripts/profile.js reset
 
 This forgets the saved path. It does not delete the Chrome profile directory. Then do first setup again.
 
-Chrome launches with the sandbox on, so the `--no-sandbox` warning stays off. Only one process can hold the profile. If a command says the profile is already in use, ask the user to close that Chrome window and retry. If a command says the profile path is not set, do first setup. Do not launch Chrome until a path is saved or `PLAYWRIGHT_USER_DATA_DIR` is set.
+The fetch runs headless, so no Chrome window appears. Sign-in stays visible. Chrome launches with the sandbox on, so the `--no-sandbox` warning stays off. Only one process can hold the profile. If a command says the profile is already in use, ask the user to close that Chrome window and retry. If a command says the profile path is not set, do first setup. Do not launch Chrome until a path is saved or `PLAYWRIGHT_USER_DATA_DIR` is set.
 
 ## First-time sign-in
 
