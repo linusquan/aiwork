@@ -1,0 +1,10 @@
+{
+  "name": "qantas-points",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Find low-points Qantas Classic Reward round trips from the Flight Reward finder.",
+  "type": "commonjs",
+  "dependencies": {
+    "playwright": "^1.63.0"
+  }
+}

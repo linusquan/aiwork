@@ -1,4 +1,8 @@
-# patreon-posts
+# aiwork skills
+
+Two agent skills live in `.agents/skills/`.
+
+## patreon-posts
 
 An agent skill that reads a logged-in Patreon chat and returns the latest posts as JSON, including posts that are only an image. The fetch runs in Playwright’s headless shell, so it does not open the Chrome app or add a Chrome icon to the Dock. Signing in still opens a visible Chrome window.
 
@@ -78,3 +82,34 @@ npx skills update patreon-posts
 ```
 
 `npx skills check` shows whether an update is available. The updater copies the skill files and does not run `npm install`. If `package.json` changed, run `npm install` again in the skill directory.
+
+## qantas-points
+
+Finds a round trip on Qantas Classic Reward seats and keeps the option with the fewest points. The search opens a normal Chrome window because the reward finder blocks a headless browser. Chrome runs with the sandbox on.
+
+Install it from this repository:
+
+```bash
+npx skills add linusquan/aiwork --skill qantas-points
+cd .agents/skills/qantas-points
+npm install
+```
+
+Before the first search, choose a Chrome profile directory for the skill. `~/.qantas-playwright-profile` is the usual choice. No Qantas sign-in is needed, because the finder is public.
+
+```bash
+node scripts/profile.js set ~/.qantas-playwright-profile
+```
+
+A search needs five answers: how many people, which cities to leave from in preference order, which destinations are acceptable, one or more date windows, and how many days later the return flight leaves. Both the going date and the return date have to sit inside those windows.
+
+```bash
+node scripts/find-flights.js \
+  --people 2 \
+  --from Sydney,Melbourne,Brisbane \
+  --to Tokyo \
+  --days 7 \
+  --range 2027-09-10:2027-09-20
+```
+
+`--from` and `--to` take city names listed in `scripts/airports.json`, or IATA airport codes for anywhere else the finder covers. When you ask an agent about a city that is not listed, it looks up the codes. Repeat `--range` for another window. The JSON lists Qantas-operated direct flights only, lowest points first. `pointsEach` is per person.
